@@ -3,11 +3,11 @@ services:
     container_name: pihole
     image: pihole/pihole:latest
     env_file:
-      - /srv/dns/pihole.env
+      - /srv/threshold/dns/pihole.env
     ports:
       - "53:53/tcp" # DNS Ports
       - "53:53/udp" # DNS Ports
       - "59001:443/tcp" # Default HTTPs Port. FTL will generate a self-signed certificate
     volumes:
-      - /srv/dns/data:/etc/pihole
+      - /srv/threshold/dns/data:/etc/pihole
     restart: unless-stopped
