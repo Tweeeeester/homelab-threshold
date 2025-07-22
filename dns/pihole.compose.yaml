@@ -3,15 +3,11 @@ services:
     container_name: pihole
     image: pihole/pihole:latest
     env_file:
-      - ./pihole.env
+      - /srv/dns/pihole.env
     ports:
       - "53:53/tcp" # DNS Ports
       - "53:53/udp" # DNS Ports
-      - "59004:443/tcp" # Default HTTPs Port. FTL will generate a self-signed certificate
-    environment:
-      TZ: "America/New_York"
-      FTLCONF_dns_listeningMode: "all"
-      FTLCONF_webserver_api_password: $PIHOLE_WEBAPP_PASSWORD
+      - "59001:443/tcp" # Default HTTPs Port. FTL will generate a self-signed certificate
     volumes:
       - /srv/dns/data:/etc/pihole
     restart: unless-stopped

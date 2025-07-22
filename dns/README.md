@@ -20,3 +20,6 @@ OR
 ```bash
 netstat -tulpn | grep ":53 "
 ```
+
+### Connect to PiHole Admin
+Go to `https://IP_ADDRESS:59004/admin/login`
