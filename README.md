@@ -21,7 +21,7 @@ git clone https://github.com/Tweeeeester/homelab-threshold.git ./threshold
 
 Copy .env files to server
 ```bash
-scp ./pihole/pihole.env username@threshold:/srv/pihole/pihole.env
+scp ./dns/pihole.env lyonette@threshold:/srv/threshold/dns/pihole.env
 ```
 
 Run Services
