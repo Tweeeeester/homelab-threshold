@@ -7,10 +7,6 @@ services:
     restart: unless-stopped
     env_file:
       - /srv/threshold/reverse-proxy/caddy.env
-    environment:
-      - CLOUDFLARE_EMAIL=${CF_EMAIL}
-      - CLOUDFLARE_API_TOKEN=${CF_API_TOKEN}
-      - ACME_AGREE=true
     ports:
       - 2019:59002 # remove if you do not want admin API
       - 80:80
