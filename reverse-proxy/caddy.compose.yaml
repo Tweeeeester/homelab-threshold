@@ -6,7 +6,7 @@ services:
     container_name: caddy
     restart: unless-stopped
     env_file:
-      - .env
+      - /srv/threshold/reverse-proxy/caddy.env
     environment:
       - CLOUDFLARE_EMAIL=${CF_EMAIL}
       - CLOUDFLARE_API_TOKEN=${CF_API_TOKEN}
