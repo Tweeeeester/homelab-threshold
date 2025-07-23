@@ -1,0 +1,16 @@
+{
+        admin 0.0.0.0:2019
+}
+
+*.emriss.cloud {
+        tls {
+                dns cloudflare {env.CF_API_TOKEN}
+                propagation_delay 2m
+                resolvers 1.1.1.1
+        }
+
+        @NAS host nas.emriss.cloud
+        handle @NAS {
+                reverse_proxy 10.19.0.2:5001
+        }
+}
