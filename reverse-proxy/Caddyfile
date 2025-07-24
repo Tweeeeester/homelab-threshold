@@ -1,5 +1,6 @@
 {
     admin 0.0.0.0:2019
+    debug
 }
 
 *.emriss.cloud {
@@ -9,8 +10,29 @@
                 resolvers 1.1.1.1
         }
 
+        @BUGBEAR host bugbear.emriss.cloud
+        handle @BUGBEAR {
+            reverse_proxy http://10.19.0.1:80
+        }
+
         @NAS host nas.emriss.cloud
         handle @NAS {
-                reverse_proxy 10.19.0.2:5001
+            reverse_proxy 10.19.0.2:5000
+        }
+
+        @PORTAINER-THRESHOLD host portainer-threshold.emriss.cloud
+        handle @PORTAINER-THRESHOLD {
+            reverse_proxy 10.19.0.4:59000
+        }
+
+        @PIHOLE host pihole.emriss.cloud
+        handle @PIHOLE {
+            redir / /admin{uri}
+            reverse_proxy https://10.19.0.4:59001 {
+                transport http {
+                        tls
+                        tls_insecure_skip_verify
+                }
+            }
         }
 }
