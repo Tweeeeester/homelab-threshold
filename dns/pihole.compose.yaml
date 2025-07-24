@@ -9,5 +9,5 @@ services:
       - "53:53/udp" # DNS Ports
       - "59001:443/tcp" # Default HTTPs Port. FTL will generate a self-signed certificate
     volumes:
-      - /srv/threshold/dns/data:/etc/pihole
+      - /srv/threshold/data/pihole:/etc/pihole
     restart: unless-stopped
