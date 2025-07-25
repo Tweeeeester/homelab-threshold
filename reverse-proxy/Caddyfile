@@ -4,31 +4,40 @@
 }
 
 *.emriss.cloud {
-        tls {
-                dns cloudflare {env.CLOUDFLARE_API_TOKEN}
-                propagation_delay 2m
-                resolvers 1.1.1.1
-        }
+    tls {
+        dns cloudflare {env.CLOUDFLARE_API_TOKEN}
+        propagation_delay 2m
+        resolvers 1.1.1.1
+    }
 
-        handle bugbear.emriss.cloud {
-            reverse_proxy http://10.19.0.1:80
-        }
+    @bugbear host bugbear.emriss.cloud
+    handle @bugbear {
+        reverse_proxy http://10.19.0.1:80
+    }
 
-        handle nas.emriss.cloud {
-            reverse_proxy 10.19.0.2:5001
-        }
+    @backup host backup.emriss.cloud
+    handle @backup {
+        reverse_proxy http://10.19.0.2:59000
+    }
 
-        handle portainer-threshold.emriss.cloud {
-            reverse_proxy 10.19.0.4:59000
-        }
+    @nas host nas.emriss.cloud
+    handle @nas {
+        reverse_proxy 10.19.0.2:5001
+    }
 
-        handle pihole.emriss.cloud {
-            redir / /admin{uri}
-            reverse_proxy https://10.19.0.4:59001 {
-                transport http {
-                    tls
-                    tls_insecure_skip_verify
-                }
+    @portainer-threshold host portainer-threshold.emriss.cloud
+    handle @portainer-threshold {
+        reverse_proxy 10.19.0.4:59000
+    }
+
+    @pihole host pihole.emriss.cloud
+    handle @pihole {
+        redir / /admin{uri}
+        reverse_proxy https://10.19.0.4:59001 {
+            transport http {
+                tls
+                tls_insecure_skip_verify
             }
         }
+    }
 }
