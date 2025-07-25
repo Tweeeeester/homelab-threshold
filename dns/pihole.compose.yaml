@@ -10,7 +10,7 @@ services:
       - "59001:443/tcp" # Default HTTPs Port. FTL will generate a self-signed certificate
     environment:
       FTLCONF_dns_hosts: |
-        10.19.0.2 nas.emriss.cloud
+        10.19.0.4 nas.emriss.cloud
         10.19.0.4 pihole.emriss.cloud
         10.19.0.4 portainer-threshold.emriss.cloud
 
