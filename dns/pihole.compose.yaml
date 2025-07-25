@@ -8,6 +8,12 @@ services:
       - "53:53/tcp" # DNS Ports
       - "53:53/udp" # DNS Ports
       - "59001:443/tcp" # Default HTTPs Port. FTL will generate a self-signed certificate
+    environment:
+      FTLCONF_dns_hosts: |
+        10.19.0.2 nas.emriss.cloud
+        10.19.0.4 pihole.emriss.cloud
+        10.19.0.4 portainer-threshold.emriss.cloud
+
     volumes:
       - /srv/threshold/data/pihole:/etc/pihole
     restart: unless-stopped
