@@ -27,7 +27,11 @@ scp ./dns/pihole.env lyonette@threshold:/srv/threshold/dns/pihole.env
 Run Services
 ```bash
 docker compose -f /srv/threshold/docker-management/portainer.compose.yaml up -d
-
 docker compose -f /srv/threshold/dns/pihole.compose.yaml up -d
+docker compose -f /srv/threshold/reverse-proxy/caddy.compose.yaml up -d
 ```
 
+# Update Codebase
+```bash
+git pull origin main
+```

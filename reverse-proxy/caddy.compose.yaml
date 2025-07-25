@@ -1,0 +1,17 @@
+services:
+  caddy:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: caddy
+    restart: unless-stopped
+    env_file:
+      - /srv/threshold/reverse-proxy/caddy.env
+    ports:
+      - 2019:59002 # remove if you do not want admin API
+      - 80:80
+      - 443:443
+    volumes:
+      - /srv/threshold/data/caddy/config:/config
+      - /srv/threshold/data/caddy/data:/data
+      - /srv/threshold/reverse-proxy/Caddyfile:/etc/caddy/Caddyfile
